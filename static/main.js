@@ -23,7 +23,7 @@ async function envoyerMessage() {
         body: JSON.stringify({message: message})
     });
     const data = await response.json();
-    ajouterMessage("Bot : " + data.response, "bot");
+    ajouterMessage("Chatbot : " + data.response, "bot");
 }
 
 form.addEventListener("submit", function(e) {

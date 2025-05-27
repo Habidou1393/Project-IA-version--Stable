@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Salut",
+    "response": "Salut ! Comment puis-je t'aider aujourd'hui ?"
+  },
+  {
+    "question": "Comment ça va ?",
+    "response": "Ça va bien, merci ! Et toi ?"
+  },
+  {
+    "question": "Quel temps fait-il aujourd'hui ?",
+    "response": "Je ne peux pas vérifier la météo, mais je peux te donner des conseils sur comment trouver cette information."
+  },
+  {
+    "question": "Peux-tu me parler de l'intelligence artificielle ?",
+    "response": "Bien sûr ! L'intelligence artificielle est un domaine de l'informatique qui vise à créer des systèmes capables d'effectuer des tâches qui nécessitent normalement l'intelligence humaine."
+  },
+  {
+    "question": "Quelle est la capitale de la France ?",
+    "response": "La capitale de la France est Paris."
+  },
+  {
+    "question": "Peux-tu me donner une recette de cuisine ?",
+    "response": "Bien sûr ! Que dirais-tu d'une recette simple de pâtes à la sauce tomate ?"
+  },
+  {
+    "question": "Comment puis-je apprendre à programmer ?",
+    "response": "Il existe de nombreuses ressources en ligne pour apprendre à programmer, comme des tutoriels, des cours en ligne et des livres."
+  },
+  {
+    "question": "Quels sont les avantages de l'apprentissage en ligne ?",
+    "response": "L'apprentissage en ligne offre flexibilité, accessibilité et une grande variété de ressources."
+  },
+  {
+    "question": "Peux-tu me recommander un livre ?",
+    "response": "Bien sûr ! Quel genre de livre préfères-tu ?"
+  },
+  {
+    "question": "bonjour",
+    "response": "« Bonjour » est la salutation la plus communément employée en français lorsque l'on rencontre ou croise une connaissance, ou une personne inconnue dans le cadre d'une présentation, et ce, du matin jusqu'à la fin de la journée. Par extension, « bonjour » est employé pour les rencontres virtuelles telles que la correspondance, les télécommunications ou les médias."
+  }
+]
