@@ -54,7 +54,7 @@ def get_response(message):
         else:
             return "Je n'ai pas trouvé d'information sur Wikipédia pour cette requête."
 
-    # Sinon, réponse normale basée sur la mémoire
+    # Sinon, réponse normale basée sur la mémoire (le .json)
     if not memoire_cache:
         memoire_cache.append({"question": message, "response": "Je vais m'en souvenir."})
         save_memory()
