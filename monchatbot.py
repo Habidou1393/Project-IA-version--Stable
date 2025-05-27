@@ -29,10 +29,10 @@ def clean_memory():
         memoire_cache = memoire_cache[-taille_max_de_la_memoire:]
 
 @lru_cache(maxsize=128)
-def get_wikipedia_summary(query):
+def get_wikipedia_summary(requete):
     try:
         wikipedia.set_lang("fr")
-        return wikipedia.summary(query, sentences=2)
+        return wikipedia.summary(requete, sentences=2)
     except Exception:
         return None
 
@@ -40,12 +40,12 @@ def obtenir_la_response(message):
     global memoire_cache
     
     if message.lower().startswith(WIKI_TRIGGER):
-        query = message[len(WIKI_TRIGGER):].strip()
-        if not query:
+        requete = message[len(WIKI_TRIGGER):].strip()
+        if not requete:
             return "Tu dois préciser ce que tu veux chercher sur Wikipédia."
-        wiki_summary = get_wikipedia_summary(query)
-        if wiki_summary:
-            return f"(Depuis Wikipédia)\n{wiki_summary}"
+        resume_text_wiki = get_wikipedia_summary(requete)
+        if resume_text_wiki:
+            return {resume_text_wiki: "Voici un résumé de Wikipédia pour ta requête :"}
         else:
             return "Je n'ai pas trouvé d'information sur Wikipédia pour cette requête."
 
