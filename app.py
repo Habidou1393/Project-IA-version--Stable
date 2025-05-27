@@ -9,28 +9,28 @@ from functools import lru_cache
 
 app = Flask(__name__)
 
-DATA_FILE = "MémoireDuChatbot.json"
-MAX_MEMORY_SIZE = 100
+data_file = "MémoireDuChatbot.json"
+taille_max_de_la_memoire = 100
 WIKI_TRIGGER = "cherche sur wikipedia "
 
 lock = Lock()
 
 # Charge la mémoire en RAM au démarrage (et la garde en cache)
-if os.path.exists(DATA_FILE):
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        memory_cache = json.load(f)
+if os.path.exists(data_file):
+    with open(data_file, "r", encoding="utf-8") as f:
+        memoire_cache = json.load(f)
 else:
-    memory_cache = []
+    memoire_cache = []
 
 def save_memory():
     with lock:
-        with open(DATA_FILE, "w", encoding="utf-8") as f:
-            json.dump(memory_cache, f, ensure_ascii=False, indent=2)
+        with open(data_file, "w", encoding="utf-8") as f:
+            json.dump(memoire_cache, f, ensure_ascii=False, indent=2)
 
 def clean_memory():
-    global memory_cache
-    if len(memory_cache) > MAX_MEMORY_SIZE:
-        memory_cache = memory_cache[-MAX_MEMORY_SIZE:]
+    global memoire_cache
+    if len(memoire_cache) > taille_max_de_la_memoire:
+        memoire_cache = memoire_cache[-taille_max_de_la_memoire:]
 
 @lru_cache(maxsize=128)
 def get_wikipedia_summary(query):
@@ -41,9 +41,9 @@ def get_wikipedia_summary(query):
         return None
 
 def get_response(message):
-    global memory_cache
-
-    # Si la requête commence par le trigger Wikipedia, on cherche sur Wikipédia uniquement
+    global memoire_cache
+    # Si la requête commence 
+    # par le trigger Wikipedia, on cherche sur Wikipédia uniquement
     if message.lower().startswith(WIKI_TRIGGER):
         query = message[len(WIKI_TRIGGER):].strip()
         if not query:
@@ -55,12 +55,12 @@ def get_response(message):
             return "Je n'ai pas trouvé d'information sur Wikipédia pour cette requête."
 
     # Sinon, réponse normale basée sur la mémoire
-    if not memory_cache:
-        memory_cache.append({"question": message, "response": "Je vais m'en souvenir."})
+    if not memoire_cache:
+        memoire_cache.append({"question": message, "response": "Je vais m'en souvenir."})
         save_memory()
         return f"Je n’ai encore rien appris, mais je retiens : \"{message}\""
 
-    questions = [item["question"] for item in memory_cache] + [message]
+    questions = [item["question"] for item in memoire_cache] + [message]
     vectorizer = TfidfVectorizer()
     vectors = vectorizer.fit_transform(questions)
 
@@ -69,10 +69,10 @@ def get_response(message):
     score = similarities[0, best_index]
 
     if score > 0.6:
-        return memory_cache[best_index]["response"]
+        return memoire_cache[best_index]["response"]
     else:
         response = "Je ne connais pas cette phrase, mais je vais l'apprendre."
-        memory_cache.append({"question": message, "response": response})
+        memoire_cache.append({"question": message, "response": response})
         clean_memory()
         save_memory()
         return response
