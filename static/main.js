@@ -1,5 +1,6 @@
-const chat = document.getElementById("chat");
-const input = document.getElementById("inputMessage");
+const chat = document.getElementById("chatMessages");
+const input = document.getElementById("userInput");
+const form = document.getElementById("chatForm");
 
 function ajouterMessage(texte, classe) {
     const div = document.createElement("div");
@@ -25,6 +26,7 @@ async function envoyerMessage() {
     ajouterMessage("Bot : " + data.response, "bot");
 }
 
-input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") envoyerMessage();
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    envoyerMessage();
 });
