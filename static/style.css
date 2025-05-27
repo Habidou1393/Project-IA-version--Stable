@@ -42,10 +42,10 @@
 }
 
 .message {
-  margin-bottom: 45px;
+  margin-bottom: 25px;
   max-width: 70%;
-  padding: 50px 65px;
-  border-radius: 45px;
+  padding: 20px 25px;
+  border-radius: 25px;
   clear: both;
   word-wrap: break-word;
 }
