@@ -6,7 +6,7 @@ import wikipedia
 
 app = Flask(__name__)
 
-DATA_FILE = "chat_memory.json"
+DATA_FILE = "MémoireDuChatbot.json"
 
 # Charger les phrases apprises
 def load_data():
