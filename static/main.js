@@ -16,14 +16,22 @@ async function envoyerMessage() {
 
     ajouterMessage("Moi : " + message, "user");
     input.value = "";
+    input.disabled = true;  // désactive l’input le temps de la requête
 
-    const response = await fetch("/ask", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({message: message})
-    });
-    const data = await response.json();
-    ajouterMessage("Chatbot : " + data.response, "bot");
+    try {
+        const response = await fetch("/ask", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message: message})
+        });
+        const data = await response.json();
+        ajouterMessage("Chatbot : " + data.response, "bot");
+    } catch (err) {
+        ajouterMessage("Chatbot : Erreur serveur, veuillez réessayer.", "bot");
+    } finally {
+        input.disabled = false; // réactive l’input
+        input.focus();
+    }
 }
 
 form.addEventListener("submit", function(e) {

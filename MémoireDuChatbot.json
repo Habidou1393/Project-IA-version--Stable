@@ -36,11 +36,331 @@
     "response": "Bien sûr ! Quel genre de livre préfères-tu ?"
   },
   {
-    "question": "bonjour",
+    "question": "Que veux dire bonjour",
     "response": "« Bonjour » est la salutation la plus communément employée en français lorsque l'on rencontre ou croise une connaissance, ou une personne inconnue dans le cadre d'une présentation, et ce, du matin jusqu'à la fin de la journée. Par extension, « bonjour » est employé pour les rencontres virtuelles telles que la correspondance, les télécommunications ou les médias."
   },
   {
     "question": "Oui",
     "response": "Oui-Oui (en anglais : Noddy) est un personnage fictif de livres pour enfants et de dessins animés pour enfants créé par Enid Blyton en 1949 avec l'aide de l'illustrateur néerlandais Harmsen van der Beek.\nEn France, Oui-Oui paraît pour la première fois en 1962 dans la collection « Bibliothèque rose » chez Hachette, avec des illustrations de Jeanne Hives."
+  },
+  {
+    "question": "Non",
+    "response": "Le non est une réponse négative, qui peut être utilisée pour refuser une proposition, une question ou une affirmation."
+  },
+  {
+    "question": "Peux-tu m'aider avec mes devoirs ?",
+    "response": "Bien sûr ! Quel sujet as-tu besoin d'aide ?"
+  },
+  {
+    "question": "Quelle est la meilleure façon de rester en forme ?",
+    "response": "Une alimentation équilibrée et de l'exercice régulier sont essentiels pour rester en forme."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour gérer le stress ?",
+    "response": "Oui, des techniques comme la méditation, l'exercice physique et une bonne organisation peuvent aider à gérer le stress."
+  },
+  {
+    "question": "Comment puis-je améliorer mon sommeil ?",
+    "response": "Pour améliorer ton sommeil, essaie de maintenir une routine régulière, de créer un environnement calme et de limiter les écrans avant de dormir."
+  },
+  {
+    "question": "Quels sont les bienfaits de la lecture ?",
+    "response": "La lecture améliore la concentration, stimule l'imagination et peut réduire le stress."
+  },
+  {
+    "question": "Peux-tu me parler de la biodiversité ?",
+    "response": "La biodiversité fait référence à la variété des formes de vie sur Terre, y compris les espèces animales, végétales et microbiennes."
+  },
+  {
+    "question": "Comment puis-je être plus productif ?",
+    "response": "Pour être plus productif, essaie de définir des objectifs clairs, de prioriser tes tâches et de prendre des pauses régulières."
+  },
+  {
+    "question": "Peux-tu me donner des astuces pour économiser de l'argent ?",
+    "response": "Bien sûr ! Établis un budget, évite les achats impulsifs et cherche des offres et des réductions."
+  },
+  {
+    "question": "Comment puis-je améliorer mes compétences en communication ?",
+    "response": "Pratique l'écoute active, sois clair et concis dans tes messages, et n'hésite pas à demander des retours."
+  },
+  {
+    "question": "Quels sont les avantages de la méditation ?",
+    "response": "La méditation peut réduire le stress, améliorer la concentration et favoriser un sentiment de bien-être."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de l'éducation ?",
+    "response": "L'éducation est essentielle pour le développement personnel et professionnel, elle ouvre des portes et permet d'acquérir des compétences."
+  },
+  {
+    "question": "Comment puis-je développer ma créativité ?",
+    "response": "Pour développer ta créativité, essaie de sortir de ta zone de confort, explore de nouvelles idées et pratique régulièrement des activités créatives."
+  },
+  {
+    "question": "Quels sont les effets du changement climatique ?",
+    "response": "Le changement climatique entraîne des phénomènes météorologiques extrêmes, la montée du niveau de la mer et la perte de biodiversité."
+  },
+  {
+    "question": "Comment puis-je contribuer à la protection de l'environnement ?",
+    "response": "Tu peux contribuer en réduisant ta consommation d'énergie, en recyclant et en soutenant des initiatives écologiques."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour voyager de manière responsable ?",
+    "response": "Voyager de manière responsable implique de respecter les cultures locales, de minimiser ton empreinte carbone et de soutenir l'économie locale."
+  },
+  {
+    "question": "Comment puis-je améliorer ma gestion du temps ?",
+    "response": "Utilise des outils comme des calendriers, établis des priorités et évite la procrastination."
+  },
+  {
+    "question": "Quels sont les avantages de l'apprentissage des langues ?",
+    "response": "Apprendre des langues améliore la communication, ouvre des opportunités professionnelles et enrichit la culture personnelle."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la santé mentale ?",
+    "response": "La santé mentale est cruciale pour le bien-être général, elle influence nos émotions, nos pensées et nos comportements."
+  },
+  {
+    "question": "Comment puis-je développer des habitudes saines ?",
+    "response": "Commence par de petits changements, sois cohérent et trouve des activités que tu apprécies."
+  },
+  {
+    "question": "Quels sont les bienfaits de l'exercice physique ?",
+    "response": "L'exercice physique améliore la santé cardiovasculaire, renforce les muscles et peut améliorer l'humeur."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une alimentation équilibrée ?",
+    "response": "Une alimentation équilibrée comprend des fruits, des légumes, des protéines maigres et des grains entiers. Essaie de limiter les sucres ajoutés et les graisses saturées."
+  },
+  {
+    "question": "Comment puis-je rester motivé dans mes études ?",
+    "response": "Fixe-toi des objectifs clairs, récompense-toi pour tes progrès et trouve un environnement d'étude qui te convient."
+  },
+  {
+    "question": "Quels sont les avantages du bénévolat ?",
+    "response": "Le bénévolat permet de contribuer à la communauté, d'acquérir de nouvelles compétences et de rencontrer de nouvelles personnes."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la diversité ?",
+    "response": "La diversité enrichit nos sociétés, favorise l'innovation et permet une meilleure compréhension entre les cultures."
+  },
+  {
+    "question": "Comment puis-je améliorer ma confiance en moi ?",
+    "response": "Travaille sur tes compétences, fixe-toi des objectifs réalisables et entoure-toi de personnes positives."
+  },
+  {
+    "question": "Quels sont les effets positifs de la musique sur le bien-être ?",
+    "response": "La musique peut réduire le stress, améliorer l'humeur et favoriser la relaxation."
+  },
+  {
+    "question": "Comment puis-je développer mon esprit critique ?",
+    "response": "Pose des questions, analyse les informations et considère différents points de vue avant de former une opinion."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une carrière réussie ?",
+    "response": "Sois proactif, continue à apprendre et n'hésite pas à demander des retours pour t'améliorer."
+  },
+  {
+    "question": "Comment puis-je gérer les conflits de manière constructive ?",
+    "response": "Écoute activement, exprime tes sentiments calmement et cherche des solutions qui conviennent à toutes les parties."
+  },
+  {
+    "question": "Quels sont les avantages de la collaboration en équipe ?",
+    "response": "La collaboration en équipe permet de combiner les compétences, d'encourager la créativité et d'atteindre des objectifs communs plus efficacement."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la gratitude ?",
+    "response": "La gratitude améliore le bien-être émotionnel, renforce les relations et favorise une attitude positive."
+  },
+  {
+    "question": "Comment puis-je développer ma résilience ?",
+    "response": "La résilience peut être développée en apprenant à gérer le stress, en maintenant une attitude positive et en cherchant du soutien lorsque nécessaire."
+  },
+  {
+    "question": "Quels sont les bienfaits de la nature sur la santé ?",
+    "response": "Passer du temps dans la nature peut réduire le stress, améliorer l'humeur et favoriser un sentiment de calme."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une vie équilibrée ?",
+    "response": "Trouve un équilibre entre le travail, les loisirs, les relations et le temps pour toi-même."
+  },
+  {
+    "question": "Comment puis-je améliorer ma concentration ?",
+    "response": "Élimine les distractions, prends des pauses régulières et pratique la pleine conscience."
+  },
+  {
+    "question": "Quels sont les avantages de l'apprentissage continu ?",
+    "response": "L'apprentissage continu permet de rester compétitif, d'acquérir de nouvelles compétences et de s'adapter aux changements."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la communication non verbale ?",
+    "response": "La communication non verbale, comme le langage corporel et les expressions faciales, joue un rôle crucial dans la transmission des émotions et des intentions."
+  },
+  {
+    "question": "Comment puis-je développer une mentalité de croissance ?",
+    "response": "Adopte une attitude positive face aux défis, apprends de tes erreurs et sois ouvert aux feedbacks."
+  },
+  {
+    "question": "Quels sont les effets de la technologie sur nos vies ?",
+    "response": "La technologie a transformé nos vies en améliorant la communication, l'accès à l'information et l'efficacité, mais elle peut aussi entraîner des problèmes de dépendance et d'isolement."
+  },
+  {
+    "question": "Comment puis-je cultiver des relations saines ?",
+    "response": "Communique ouvertement, sois honnête et respecte les limites des autres."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour gérer mon temps libre ?",
+    "response": "Utilise ton temps libre pour te détendre, explorer de nouveaux hobbies ou passer du temps avec des amis et la famille."
+  },
+  {
+    "question": "Quels sont les avantages de la pleine conscience ?",
+    "response": "La pleine conscience aide à réduire le stress, améliore la concentration et favorise un sentiment de paix intérieure."
+  },
+  {
+    "question": "Comment puis-je améliorer ma prise de décision ?",
+    "response": "Analyse les options, considère les conséquences et fais confiance à ton instinct."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de l'empathie ?",
+    "response": "L'empathie nous permet de comprendre les émotions des autres, de renforcer les relations et de favoriser un environnement positif."
+  },
+  {
+    "question": "Comment puis-je rester informé sur l'actualité ?",
+    "response": "Suis des sources d'information fiables, lis des articles et écoute des podcasts pour rester à jour."
+  },
+  {
+    "question": "Quels sont les avantages du travail à distance ?",
+    "response": "Le travail à distance offre flexibilité, réduction des temps de trajet et possibilité d'un meilleur équilibre entre vie professionnelle et vie personnelle."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une carrière dans la technologie ?",
+    "response": "Reste curieux, continue à apprendre et n'hésite pas à te spécialiser dans un domaine qui t'intéresse."
+  },
+  {
+    "question": "Comment puis-je développer ma capacité d'adaptation ?",
+    "response": "Sois ouvert au changement, apprends à gérer l'incertitude et cherche des opportunités de croissance dans les situations nouvelles."
+  },
+  {
+    "question": "Quels sont les bienfaits de la pratique régulière d'un hobby ?",
+    "response": "Pratiquer un hobby régulièrement peut réduire le stress, améliorer la créativité et offrir un sentiment d'accomplissement."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la sécurité en ligne ?",
+    "response": "La sécurité en ligne est cruciale pour protéger tes informations personnelles, éviter les fraudes et naviguer sur Internet en toute confiance."
+  },
+  {
+    "question": "Comment puis-je développer une attitude positive ?",
+    "response": "Pratique la gratitude, entoure-toi de personnes positives et concentre-toi sur les solutions plutôt que sur les problèmes."
+  },
+  {
+    "question": "Quels sont les avantages de la planification financière ?",
+    "response": "La planification financière aide à atteindre des objectifs financiers, à économiser pour l'avenir et à gérer les dépenses efficacement."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une vie sociale épanouissante ?",
+    "response": "Participe à des activités sociales, sois ouvert aux nouvelles rencontres et investis du temps dans les relations importantes."
+  },
+  {
+    "question": "Comment puis-je améliorer ma gestion du stress au travail ?",
+    "response": "Établis des priorités, prends des pauses régulières et pratique des techniques de relaxation."
+  },
+  {
+    "question": "Quels sont les avantages de la diversité culturelle ?",
+    "response": "La diversité culturelle enrichit nos perspectives, favorise l'innovation et renforce la compréhension mutuelle."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de l'éthique professionnelle ?",
+    "response": "L'éthique professionnelle est essentielle pour maintenir la confiance, l'intégrité et le respect dans le milieu de travail."
+  },
+  {
+    "question": "Comment puis-je développer ma capacité à résoudre des problèmes ?",
+    "response": "Pratique l'analyse des problèmes, explore différentes solutions et apprends de tes expériences."
+  },
+  {
+    "question": "Quels sont les bienfaits de la pratique régulière de la gratitude ?",
+    "response": "La gratitude améliore le bien-être émotionnel, renforce les relations et favorise une attitude positive."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une vie équilibrée entre travail et loisirs ?",
+    "response": "Établis des limites claires, planifie du temps pour toi-même et n'oublie pas de te détendre."
+  },
+  {
+    "question": "Comment puis-je améliorer ma capacité à travailler en équipe ?",
+    "response": "Communique ouvertement, sois flexible et apprends à apprécier les contributions des autres."
+  },
+  {
+    "question": "Quels sont les avantages de la pratique régulière de la méditation ?",
+    "response": "La méditation peut réduire le stress, améliorer la concentration et favoriser un sentiment de bien-être."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la responsabilité personnelle ?",
+    "response": "La responsabilité personnelle est essentielle pour prendre des décisions éclairées, assumer les conséquences de nos actions et apprendre de nos erreurs."
+  },
+  {
+    "question": "Comment puis-je développer ma capacité à apprendre de nouvelles compétences ?",
+    "response": "Sois curieux, pratique régulièrement et n'hésite pas à demander de l'aide ou des conseils."
+  },
+  {
+    "question": "Quels sont les bienfaits de la pratique régulière d'un sport ?",
+    "response": "La pratique régulière d'un sport améliore la condition physique, renforce le système immunitaire et favorise le bien-être mental."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une carrière réussie dans le domaine artistique ?",
+    "response": "Sois passionné, continue à créer et à apprendre, et n'hésite pas à partager ton travail avec le monde."
+  },
+  {
+    "question": "Comment puis-je améliorer ma capacité à écouter les autres ?",
+    "response": "Pratique l'écoute active, pose des questions pour clarifier et montre de l'empathie envers les sentiments des autres."
+  },
+  {
+    "question": "Quels sont les avantages de la pratique régulière de la pleine conscience ?",
+    "response": "La pleine conscience aide à réduire le stress, améliore la concentration et favorise un sentiment de paix intérieure."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la collaboration dans le milieu professionnel ?",
+    "response": "La collaboration favorise l'innovation, améliore la productivité et renforce les relations entre collègues."
+  },
+  {
+    "question": "Comment puis-je développer ma capacité à gérer les critiques ?",
+    "response": "Apprends à voir les critiques comme des opportunités d'apprentissage, reste ouvert aux retours et ne prends pas les critiques personnellement."
+  },
+  {
+    "question": "Quels sont les bienfaits de la pratique régulière du yoga ?",
+    "response": "Le yoga améliore la flexibilité, réduit le stress et favorise un sentiment de bien-être général."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une vie professionnelle épanouissante ?",
+    "response": "Trouve un travail qui te passionne, établis des relations positives et continue à apprendre et à grandir dans ta carrière."
+  },
+  {
+    "question": "Comment puis-je améliorer ma capacité à gérer les changements ?",
+    "response": "Sois ouvert au changement, apprends à t'adapter et cherche des opportunités de croissance dans les situations nouvelles."
+  },
+  {
+    "question": "Quels sont les avantages de la pratique régulière de la gratitude ?",
+    "response": "La gratitude améliore le bien-être émotionnel, renforce les relations et favorise une attitude positive."
+  },
+  {
+    "question": "Peux-tu me parler de l'importance de la santé physique et mentale ?",
+    "response": "La santé physique et mentale est essentielle pour mener une vie équilibrée, productive et épanouissante."
+  },
+  {
+    "question": "Comment puis-je développer ma capacité à travailler sous pression ?",
+    "response": "Pratique la gestion du stress, établis des priorités claires et reste concentré sur les tâches importantes."
+  },
+  {
+    "question": "Quels sont les bienfaits de la pratique régulière de l'exercice physique ?",
+    "response": "L'exercice physique améliore la santé cardiovasculaire, renforce les muscles et peut améliorer l'humeur."
+  },
+  {
+    "question": "Peux-tu me donner des conseils pour une vie sociale épanouissante ?",
+    "response": "Participe à des activités sociales, sois ouvert aux nouvelles rencontres et investis du temps dans les relations importantes."
+  },
+  {
+    "question": "Comment puis-je améliorer ma capacité à résoudre des conflits ?",
+    "response": "Écoute activement, exprime tes sentiments calmement et cherche des solutions qui conviennent à toutes les parties."
+  },
+  {
+    "question": "bonjour",
+    "response": "Bonjour"
   }
 ]
