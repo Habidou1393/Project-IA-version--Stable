@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
-from monchatbot import get_response
+from monchatbot import obtenir_la_response
+
 
 app = Flask(__name__)
 
@@ -13,7 +14,7 @@ def ask():
     message = data.get("message", "").strip()
     if not message:
         return jsonify({"response": "Veuillez écrire quelque chose."})
-    response = get_response(message)
+    response = obtenir_la_response(message)
     return jsonify({"response": response})
 
 if __name__ == "__main__":

@@ -362,5 +362,17 @@
   {
     "question": "bonjour",
     "response": "Je ne connais pas cette phrase, mais je vais l'apprendre."
+  },
+  {
+    "question": "cv",
+    "response": "Je ne connais pas cette phrase, mais je vais l'apprendre."
+  },
+  {
+    "question": "oui et toi",
+    "response": "Je ne connais pas cette phrase, mais je vais l'apprendre."
+  },
+  {
+    "question": "recherche sur wikipedia Lewis Hamilton",
+    "response": "Je ne connais pas cette phrase, mais je vais l'apprendre."
   }
 ]

@@ -8,7 +8,7 @@ from functools import lru_cache
 
 data_file = "MémoireDuChatbot.json"
 taille_max_de_la_memoire = 100
-WIKI_TRIGGER = "cherche sur wikipedia "
+WIKI_TRIGGER = "recherche sur wikipedia "
 
 lock = Lock()
 
@@ -36,7 +36,7 @@ def get_wikipedia_summary(query):
     except Exception:
         return None
 
-def get_response(message):
+def obtenir_la_response(message):
     global memoire_cache
     
     if message.lower().startswith(WIKI_TRIGGER):
