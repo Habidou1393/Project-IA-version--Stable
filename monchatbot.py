@@ -45,7 +45,7 @@ def obtenir_la_response(message):
             return "Tu dois préciser ce que tu veux chercher sur Wikipédia."
         resume_text_wiki = get_wikipedia_summary(requete)
         if resume_text_wiki:
-            return {resume_text_wiki: "Voici un résumé de Wikipédia pour ta requête :"}
+            return f"Voici un résumé de Wikipédia pour ta requête :\n{resume_text_wiki}"
         else:
             return "Je n'ai pas trouvé d'information sur Wikipédia pour cette requête."
 
@@ -56,11 +56,11 @@ def obtenir_la_response(message):
 
     questions = [item["question"] for item in memoire_cache] + [message]
     vectorizer = TfidfVectorizer()
-    vectors = vectorizer.fit_transform(questions)
+    vecteurs = vectorizer.fit_transform(questions)
 
-    similarities = cosine_similarity(vectors[-1], vectors[:-1])
-    best_index = similarities.argmax()
-    score = similarities[0, best_index]
+    similarites = cosine_similarity(vecteurs[-1], vecteurs[:-1])
+    best_index = similarites.argmax()
+    score = similarites[0, best_index]
 
     if score > 0.6:
         return memoire_cache[best_index]["response"]
