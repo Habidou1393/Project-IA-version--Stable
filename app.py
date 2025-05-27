@@ -43,6 +43,7 @@ def get_wikipedia_summary(query):
 def get_response(message):
     global memoire_cache
     
+    # --- Gestion spéciale si la requête commence par Recherche sur wikipédia ---
     if message.lower().startswith(WIKI_TRIGGER):
         query = message[len(WIKI_TRIGGER):].strip()
         if not query:
