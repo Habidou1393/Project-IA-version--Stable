@@ -14,7 +14,7 @@ async function envoyerMessage() {
     const message = input.value.trim();
     if (!message) return;
 
-    ajouterMessage("Toi : " + message, "user");
+    ajouterMessage("Moi : " + message, "user");
     input.value = "";
 
     const response = await fetch("/ask", {
