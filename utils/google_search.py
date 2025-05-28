@@ -30,5 +30,6 @@ def recherche_google(query):
         phrases_importantes = sorted(phrases, key=pertinence, reverse=True)[:3]
         resume = " ".join(phrases_importantes)
         return resume or texte
-    except (requests.RequestException, ValueError):
+    except (requests.RequestException, ValueError) as e:
+        print(f"Une erreur est survenue lors de la recherche Google : {str(e)}")
         return None

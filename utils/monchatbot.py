@@ -1,5 +1,4 @@
 import random
-from app.memory import memoire_cache, lock, save_memory
 from utils.wikipedia_search import get_wikipedia_summary
 from utils.google_search import recherche_google
 from utils.neural_net import model, train_nn_on_memory, nn_model
@@ -9,6 +8,7 @@ from app.config import WIKI_TRIGGER, TAILLE_MAX
 corpus_embeddings = None
 
 def update_corpus_embeddings():
+    from app.memory import memoire_cache, lock
     global corpus_embeddings
     with lock:
         questions = [item["question"] for item in memoire_cache]
@@ -55,6 +55,8 @@ def detect_simple_greetings(message):
     return None
 
 def obtenir_la_response(message):
+    from app.memory import memoire_cache, lock, save_memory
+
     message = message.strip()
     if not message:
         return "Je n'ai pas bien saisi ta question, pourrais-tu reformuler s'il te plaît ?"
@@ -67,10 +69,13 @@ def obtenir_la_response(message):
         query = message[len(WIKI_TRIGGER):].strip()
         if not query:
             return "Hmm, tu dois me dire ce que tu veux que je cherche sur Wikipédia."
-        resume = get_wikipedia_summary(query)
-        if resume:
-            return ton_humain_reponse(f"Voilà ce que j'ai trouvé sur Wikipédia pour ta recherche :\n{resume}")
-        return ton_humain_reponse("Désolé, je n'ai rien trouvé de pertinent sur Wikipédia.")
+        try:
+            resume = get_wikipedia_summary(query)
+            if resume:
+                return ton_humain_reponse(f"Voilà ce que j'ai trouvé sur Wikipédia pour ta recherche :\n{resume}")
+            return ton_humain_reponse("Désolé, je n'ai rien trouvé de pertinent sur Wikipédia.")
+        except Exception as e:
+            return ton_humain_reponse(f"Une erreur est survenue lors de la recherche sur Wikipédia : {str(e)}")
 
     with lock:
         if not memoire_cache:
@@ -79,16 +84,22 @@ def obtenir_la_response(message):
             update_corpus_embeddings()
             return ton_humain_reponse(f"C'est la première fois que tu me poses ça, je retiens : « {message} »")
 
-    query_embedding = model.encode(message, convert_to_tensor=True)
+    try:
+        query_embedding = model.encode(message, convert_to_tensor=True)
+    except Exception as e:
+        return ton_humain_reponse(f"Une erreur est survenue lors de l'encodage de ta question : {str(e)}")
 
     global corpus_embeddings
     if corpus_embeddings is not None:
-        similarities = util.cos_sim(query_embedding, corpus_embeddings)[0]
-        best_score, best_index = float(similarities.max()), int(similarities.argmax())
-        if best_score > 0.6:
-            with lock:
-                reponse = memoire_cache[best_index]["response"]
-            return ton_humain_reponse(f"Je pense que ceci répond à ta question :\n{reponse}")
+        try:
+            similarities = util.cos_sim(query_embedding, corpus_embeddings)[0]
+            best_score, best_index = float(similarities.max()), int(similarities.argmax())
+            if best_score > 0.6:
+                with lock:
+                    reponse = memoire_cache[best_index]["response"]
+                return ton_humain_reponse(f"Je pense que ceci répond à ta question :\n{reponse}")
+        except Exception as e:
+            return ton_humain_reponse(f"Une erreur est survenue lors de la recherche de similarités : {str(e)}")
 
     google_result = recherche_google(message)
     if google_result:

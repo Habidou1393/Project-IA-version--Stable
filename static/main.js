@@ -38,12 +38,12 @@ async function envoyerMessage() {
         // Remplace le message temporaire par la vraie réponse
         loadingMsg.textContent = `Chatbot : ${data.response}`;
 
-        // Lecture vocale
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(data.response);
-            utterance.lang = 'fr-FR';
-            speechSynthesis.speak(utterance);
-        }
+        // Suppression de la lecture vocale pour que le bot ne parle plus
+        // if ('speechSynthesis' in window) {
+        //     const utterance = new SpeechSynthesisUtterance(data.response);
+        //     utterance.lang = 'fr-FR';
+        //     speechSynthesis.speak(utterance);
+        // }
 
     } catch (err) {
         console.error("Erreur serveur :", err);
