@@ -2,39 +2,60 @@ const chat = document.getElementById("chatMessages");
 const input = document.getElementById("userInput");
 const form = document.getElementById("chatForm");
 
-function ajouterMessage(texte, classe) {
+let loadingMsg = null;
+
+// Fonction pour ajouter un message à l'interface
+function ajouterMessage(nom, texte, classe) {
     const div = document.createElement("div");
-    div.textContent = texte;
     div.className = "message " + classe;
+    div.textContent = `${nom} ${texte}`;
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
+    return div;
 }
 
+// Envoi du message utilisateur + récupération de la réponse
 async function envoyerMessage() {
     const message = input.value.trim();
     if (!message) return;
 
-    ajouterMessage("Moi : " + message, "user");
+    ajouterMessage("Moi :", message, "user");
     input.value = "";
-    input.disabled = true;  // désactive l’input le temps de la requête
+    input.disabled = true;
+
+    // Affiche un message temporaire en attendant la réponse
+    loadingMsg = ajouterMessage("Chatbot :", "est en train d’écrire...", "bot");
 
     try {
         const response = await fetch("/ask", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({message: message})
+            body: JSON.stringify({ message: message })
         });
+
         const data = await response.json();
-        ajouterMessage("Chatbot : " + data.response, "bot");
+
+        // Remplace le message temporaire par la vraie réponse
+        loadingMsg.textContent = `Chatbot : ${data.response}`;
+
+        // Lecture vocale
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(data.response);
+            utterance.lang = 'fr-FR';
+            speechSynthesis.speak(utterance);
+        }
+
     } catch (err) {
-        ajouterMessage("Chatbot : Erreur serveur, veuillez réessayer.", "bot");
+        console.error("Erreur serveur :", err);
+        loadingMsg.textContent = "Chatbot : Erreur réseau. Veuillez réessayer.";
     } finally {
-        input.disabled = false; // réactive l’input
+        input.disabled = false;
         input.focus();
     }
 }
 
-form.addEventListener("submit", function(e) {
+// Gestion du formulaire (bouton ou touche Entrée)
+form.addEventListener("submit", function (e) {
     e.preventDefault();
     envoyerMessage();
 });
