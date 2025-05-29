@@ -4,22 +4,34 @@ import torch.optim as optim
 from app.memory import memoire_cache, lock
 from sentence_transformers import SentenceTransformer
 
+# Modèle d'embedding
 model = SentenceTransformer('distiluse-base-multilingual-cased-v1')
 
-class SimpleNN(nn.Module):
-    def __init__(self, input_size=512, hidden_size=128, output_size=512):
+# Réseau de neurones optimisé
+class ImprovedNN(nn.Module):
+    def __init__(self, input_dim=512, hidden_dim=256, output_dim=512):
         super().__init__()
-        self.fc1 = nn.Linear(input_size, hidden_size)
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(hidden_size, output_size)
+        self.layers = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.BatchNorm1d(hidden_dim),
+            nn.GELU(),
+            nn.Dropout(0.3),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.BatchNorm1d(hidden_dim),
+            nn.GELU(),
+            nn.Dropout(0.3),
+            nn.Linear(hidden_dim, output_dim)
+        )
 
-    def forward(self, x):
-        return self.fc2(self.relu(self.fc1(x)))
+    def forward(self, x): return self.layers(x)
 
-nn_model = SimpleNN()
-optimizer = optim.Adam(nn_model.parameters(), lr=0.001)
+# Initialisation
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+nn_model = ImprovedNN().to(device)
+optimizer = optim.AdamW(nn_model.parameters(), lr=1e-3, weight_decay=1e-4)
 loss_fn = nn.MSELoss()
 
+# Entraînement
 def train_nn_on_memory(epochs=10):
     with lock:
         if len(memoire_cache) < 2:
@@ -27,13 +39,15 @@ def train_nn_on_memory(epochs=10):
         questions = [item["question"] for item in memoire_cache]
         responses = [item["response"] for item in memoire_cache]
 
-    q_embeddings = model.encode(questions, convert_to_tensor=True)
-    r_embeddings = model.encode(responses, convert_to_tensor=True)
+    with torch.no_grad():
+        q_embed = model.encode(questions, convert_to_tensor=True).to(device)
+        r_embed = model.encode(responses, convert_to_tensor=True).to(device)
 
     nn_model.train()
-    for _ in range(epochs):
+    for epoch in range(epochs):
         optimizer.zero_grad()
-        pred = nn_model(q_embeddings)
-        loss = loss_fn(pred, r_embeddings)
+        pred = nn_model(q_embed)
+        loss = loss_fn(pred, r_embed)
         loss.backward()
         optimizer.step()
+        print(f"Epoch {epoch+1}/{epochs} - Loss: {loss.item():.4f}")

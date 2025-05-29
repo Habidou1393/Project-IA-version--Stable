@@ -1,18 +1,17 @@
-import sys
 import os
-from flask import Flask, render_template, request, jsonify
+import sys
+from flask import Flask, request, jsonify, render_template
 
-# Chemin racine du projet (le dossier qui contient app/, static/, templates/, etc)
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Ajoute ce chemin au PYTHONPATH pour les imports relatifs
+# Configuration du chemin racine du projet
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if ROOT_DIR not in sys.path:
-    sys.path.append(ROOT_DIR)
+    sys.path.insert(0, ROOT_DIR)
 
+# Initialisation de Flask avec chemins explicites
 app = Flask(
     __name__,
     template_folder=os.path.join(ROOT_DIR, 'templates'),
-    static_folder=os.path.join(ROOT_DIR, 'static')  # Ajout du dossier static explicitement
+    static_folder=os.path.join(ROOT_DIR, 'static')
 )
 
 @app.route("/")
@@ -21,19 +20,14 @@ def index():
 
 @app.route("/ask", methods=["POST"])
 def ask():
-    # Import ici pour éviter les imports circulaires
-    from utils.monchatbot import obtenir_la_response
-
-    data = request.get_json(silent=True)
-    if not data:
-        return jsonify({"response": "Requête invalide."}), 400
-    
+    from utils.monchatbot import obtenir_la_response  # Import différé pour éviter les boucles
+    data = request.get_json(silent=True) or {}
     message = data.get("message", "").strip()
+
     if not message:
-        return jsonify({"response": "Veuillez écrire quelque chose."}), 400
-    
-    response = obtenir_la_response(message)
-    return jsonify({"response": response})
+        return jsonify(response="Veuillez écrire quelque chose."), 400
+
+    return jsonify(response=obtenir_la_response(message))
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=False, host="0.0.0.0", port=5000)
