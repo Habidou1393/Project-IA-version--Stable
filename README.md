@@ -5,7 +5,6 @@ mon_projet/
 │   ├── app.py                  # Point d'entrée Flask (ex : création et config de l'app)
 │   ├── config.py               # Configuration (variables d'env, clés API, constantes)
 │   ├── memory.py               # Gestion mémoire (cache, accès thread-safe)
-│   ├── chatbot_manager.py      # (Optionnel) gestion centralisée du chatbot (dialogue, contexte)
 │   └── routes.py               # (Optionnel) séparation des routes Flask
 │
 ├── utils/                      # Fonctions utilitaires & modules métier
@@ -17,9 +16,8 @@ mon_projet/
 │
 ├── data/                       # Données persistantes
 │   ├── memoire_du_chatbot.json # Base mémoire des questions/réponses
-│   ├── embeddings_cache.pkl    # (Optionnel) cache embeddings sérialisé pour rapidité
 │
-├── templates/                  # Templates HTML Jinja2
+├── templates/                 
 │   └── index.html              # Page d’accueil / interface chat
 │
 ├── static/                     # Ressources statiques front-end
