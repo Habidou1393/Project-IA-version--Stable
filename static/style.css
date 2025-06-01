@@ -93,3 +93,21 @@
 .chat-input button:hover {
   background: #0d0d0e;
 }
+
+.spinner::after {
+    content: ' ';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 2px solid #999;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
