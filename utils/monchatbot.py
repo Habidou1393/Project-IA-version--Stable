@@ -60,12 +60,55 @@ def detect_salutation(message: str) -> str | None:
             "Salut ! Ravi de te voir.",
             "Coucou ! Que puis-je faire pour toi ?"
         ])
+    
     # Si message contient une question de type "ça va ?"
     if any(x in msg for x in ["comment vas-tu", "comment ça va", "ça va", "tu vas bien"]):
         return random.choice([
             "Je vais très bien, merci ! Et toi ?",
             "Tout roule ici, prêt à t'aider !",
             "Super bien, merci de demander !"
+        ])
+    
+    if any(x in msg for x in ["merci", "merci beaucoup", "merci bien"]):
+        return random.choice([
+            "Avec plaisir ! Si tu as d'autres questions, n'hésite pas.",
+            "C'est toujours un plaisir de t'aider !",
+            "Merci à toi pour ta question !"
+        ])
+    
+    if any(x in msg for x in ["au revoir", "à bientôt", "à la prochaine"]):
+        return random.choice([
+            "Au revoir ! À bientôt j'espère !",
+            "À la prochaine ! Prends soin de toi.",
+            "Merci d'avoir discuté avec moi, à bientôt !"
+        ])
+    
+    if any(x in msg for x in ["s'il te plaît", "svp", "stp"]):
+        return random.choice([
+            "Bien sûr, je suis là pour ça !",
+            "Pas de souci, je suis là pour t'aider !",
+            "Avec plaisir, que puis-je faire pour toi ?"
+        ])
+    
+    if any(x in msg for x in ["oui", "non", "peut-être", "d'accord"]):
+        return random.choice([
+            "D'accord, je prends note !",
+            "Bien compris, merci pour ta réponse !",
+            "Merci pour ta réponse, je suis là si tu as d'autres questions !"
+        ])
+    
+    if any(x in msg for x in ["je ne sais pas", "je ne comprends pas", "je ne suis pas sûr"]):
+        return random.choice([
+            "Pas de souci, je suis là pour t'aider à comprendre !",
+            "C'est normal, on peut en discuter ensemble.",
+            "Pas de problème, je peux t'expliquer si tu veux !"
+        ])
+    
+    if any(x in msg for x in ["j'ai besoin d'aide", "aide moi", "peux-tu m'aider"]):
+        return random.choice([
+            "Bien sûr, je suis là pour ça ! Que puis-je faire pour toi ?",
+            "Pas de souci, je suis là pour t'aider !",
+            "Dis-moi ce dont tu as besoin, je vais essayer de t'aider."
         ])
     return None  # Pas de salutation détectée
 
