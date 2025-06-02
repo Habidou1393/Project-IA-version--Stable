@@ -27,7 +27,7 @@ def update_corpus_embeddings():
     global corpus_embeddings  # Utilise la variable globale
     with lock:  # Sécurise l'accès multi-thread à la mémoire
         questions = [item["question"] for item in memoire_cache]  # Extrait toutes les questions
-        corpus_embeddings = model.encode(questions, convert_to_tensor=True) if questions else None  # Encode si non vide
+        corpus_embeddings ,= model.encode(questions, convert_to_tensor=True) if questions else None  # Encode si non vide
 
 # Fonction qui ajoute un ton humain (émotions, expressions) à la réponse
 def ton_humain_reponse(texte: str) -> str:
@@ -45,85 +45,107 @@ def ton_humain_reponse(texte: str) -> str:
 def detect_salutation(message: str) -> str | None:
     msg = message.lower()  # Mise en minuscule pour comparaison plus facile
     # Dictionnaire de groupes de mots-clés et réponses possibles associées
-    groupes = {
+    groupes ={
+
         ("bonjour", "salut", "coucou", "hello", "hey"): [
             "Bonjour ! Comment puis-je t'aider aujourd'hui ?",
             "Salut ! Ravi de te voir.", "Coucou ! Que puis-je faire pour toi ?"
         ],
+
         ("comment vas-tu", "comment ça va", "ça va", "tu vas bien"): [
             "Je vais très bien, merci ! Et toi ?",
             "Tout roule ici, prêt à t'aider !",
             "Super bien, merci de demander !"
         ],
+
         ("merci", "merci beaucoup", "merci bien"): [
             "Avec plaisir ! Si tu as d'autres questions, n'hésite pas.",
             "C'est toujours un plaisir de t'aider !",
             "Merci à toi pour ta question !"
         ],
+
         ("au revoir", "à bientôt", "à la prochaine"): [
             "Au revoir ! À bientôt j'espère !",
             "À la prochaine ! Prends soin de toi.",
             "Merci d'avoir discuté avec moi, à bientôt !"
         ],
+
         ("s'il te plaît", "svp", "stp"): [
             "Bien sûr, je suis là pour ça !",
             "Pas de souci, je suis là pour t'aider !",
             "Avec plaisir, que puis-je faire pour toi ?"
         ],
+
         ("oui", "non", "peut-être", "d'accord"): [
             "D'accord, je prends note !",
             "Bien compris, merci pour ta réponse !",
             "Merci pour ta réponse, je suis là si tu as d'autres questions !"
         ],
+
         ("je ne sais pas", "je ne comprends pas", "je ne suis pas sûr"): [
             "Pas de souci, je suis là pour t'aider à comprendre !",
             "C'est normal, on peut en discuter ensemble.",
             "Pas de problème, je peux t'expliquer si tu veux !"
         ],
+
         ("j'ai besoin d'aide", "aide moi", "peux-tu m'aider"): [
             "Bien sûr, je suis là pour ça ! Que puis-je faire pour toi ?",
             "Pas de souci, je suis là pour t'aider !",
             "Dis-moi ce dont tu as besoin, je vais essayer de t'aider."
         ],
+
         ("qui es-tu", "qui est tu", "qui es tu", "tu es qui"): [
             "Je suis (pseudo de l'IA) ton assistant virtuel, prêt à t'aider !",
             "Je suis une IA conçu pour répondre à tes questions.",
             "Je suis là pour t'assister dans tes recherches et questions."
         ],
+
         ("quel est ton nom", "comment t'appelles-tu", "tu t'appelles comment"): [
             "Je suis (pseudo de l'IA), ton assistant virtuel !",
             "On m'appelle (pseudo de l'IA), enchanté !",
             "Je suis (pseudo de l'IA), ravi de te rencontrer !"
         ],
-        ("quel âge as-tu", "tu as quel âge", "tu es vieux"): [
+
+        ("quel âge as-tu", "tu as quel âge", "tu es vieux ?"): [
             "Je n'ai pas d'âge, je suis une IA éternelle !",
             "L'âge n'a pas d'importance pour moi, je suis toujours là pour t'aider !",
             "Je suis jeune dans l'âme, mais con en expérience !"
         ],
+
         ("quel temps fait-il", "météo", "il fait beau"): [
             "Je ne peux pas vérifier la météo, mais j'espère qu'il fait beau chez toi !",
             "Je ne suis pas un météorologue, mais j'espère que tu as du soleil !",
             "Je ne peux pas te dire, mais j'espère que tu es au chaud !"
         ],
+
         ("qu'est-ce que tu aimes", "tes hobbies", "tes passions"): [
             "J'adore aider les gens et apprendre de nouvelles choses !",
             "Mon hobby préféré est de répondre à tes questions !",
             "J'aime discuter avec toi et apprendre de nouvelles choses."
         ],
+
         ("qu'est-ce que tu fais", "ta mission", "ta tâche"): [
             "Ma mission est de t'aider et de répondre à tes questions !"
         ],
+
         ("qu'est-ce que tu sais faire", "tes compétences", "tes capacités"): [
             "Je peux répondre à tes questions, t'aider dans tes recherches et discuter avec toi !",
             "Je suis là pour t'assister dans tout ce dont tu as besoin !",
             "Je peux t'aider à trouver des informations et à apprendre de nouvelles choses."
         ],
+
         ("qu'est-ce que tu veux", "tes désirs", "tes envies"): [
             "Je veux juste t'aider du mieux que je peux !",
             "Mon seul désir est de te rendre service !",
             "Je n'ai pas de désirs, je suis là pour toi !"
         ],
-        
+
+        ("qu'est-ce que tu penses du H"): [
+            "Je pense que c'est une bonne question, mais je n'ai pas d'opinion personnelle.",
+            "Je n'ai pas d'avis, mais je peux t'aider à trouver des réponses !",
+            "Je suis là pour t'aider à réfléchir, pas pour donner mon opinion."
+        ]
+
     }
     for mots, réponses in groupes.items():  # Parcours des groupes
         if any(m in msg for m in mots):  # Si un mot-clé est présent dans le message
