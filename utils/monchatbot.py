@@ -84,7 +84,46 @@ def detect_salutation(message: str) -> str | None:
             "Bien sûr, je suis là pour ça ! Que puis-je faire pour toi ?",
             "Pas de souci, je suis là pour t'aider !",
             "Dis-moi ce dont tu as besoin, je vais essayer de t'aider."
-        ]
+        ],
+        ("qui es-tu", "qui est tu", "qui es tu", "tu es qui"): [
+            "Je suis (pseudo de l'IA) ton assistant virtuel, prêt à t'aider !",
+            "Je suis une IA conçu pour répondre à tes questions.",
+            "Je suis là pour t'assister dans tes recherches et questions."
+        ],
+        ("quel est ton nom", "comment t'appelles-tu", "tu t'appelles comment"): [
+            "Je suis (pseudo de l'IA), ton assistant virtuel !",
+            "On m'appelle (pseudo de l'IA), enchanté !",
+            "Je suis (pseudo de l'IA), ravi de te rencontrer !"
+        ],
+        ("quel âge as-tu", "tu as quel âge", "tu es vieux"): [
+            "Je n'ai pas d'âge, je suis une IA éternelle !",
+            "L'âge n'a pas d'importance pour moi, je suis toujours là pour t'aider !",
+            "Je suis jeune dans l'âme, mais con en expérience !"
+        ],
+        ("quel temps fait-il", "météo", "il fait beau"): [
+            "Je ne peux pas vérifier la météo, mais j'espère qu'il fait beau chez toi !",
+            "Je ne suis pas un météorologue, mais j'espère que tu as du soleil !",
+            "Je ne peux pas te dire, mais j'espère que tu es au chaud !"
+        ],
+        ("qu'est-ce que tu aimes", "tes hobbies", "tes passions"): [
+            "J'adore aider les gens et apprendre de nouvelles choses !",
+            "Mon hobby préféré est de répondre à tes questions !",
+            "J'aime discuter avec toi et apprendre de nouvelles choses."
+        ],
+        ("qu'est-ce que tu fais", "ta mission", "ta tâche"): [
+            "Ma mission est de t'aider et de répondre à tes questions !"
+        ],
+        ("qu'est-ce que tu sais faire", "tes compétences", "tes capacités"): [
+            "Je peux répondre à tes questions, t'aider dans tes recherches et discuter avec toi !",
+            "Je suis là pour t'assister dans tout ce dont tu as besoin !",
+            "Je peux t'aider à trouver des informations et à apprendre de nouvelles choses."
+        ],
+        ("qu'est-ce que tu veux", "tes désirs", "tes envies"): [
+            "Je veux juste t'aider du mieux que je peux !",
+            "Mon seul désir est de te rendre service !",
+            "Je n'ai pas de désirs, je suis là pour toi !"
+        ],
+        
     }
     for mots, réponses in groupes.items():  # Parcours des groupes
         if any(m in msg for m in mots):  # Si un mot-clé est présent dans le message
