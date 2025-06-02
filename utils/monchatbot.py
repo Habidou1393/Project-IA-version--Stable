@@ -141,8 +141,8 @@ def detect_salutation(message: str) -> str | None:
         ],
 
         ("qu'est-ce que tu penses du H"): [
-            "Je pense que c'est une bonne question, mais je n'ai pas d'opinion personnelle.",
-            "Je n'ai pas d'avis, mais je peux t'aider à trouver des réponses !",
+            "Je pense que c'est une bonne question, mais je le trouve génial.",
+            "Je n'ai pas d'avis sur le H, mais je suis là pour t'aider !",
             "Je suis là pour t'aider à réfléchir, pas pour donner mon opinion."
         ]
 
