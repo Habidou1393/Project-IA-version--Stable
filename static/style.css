@@ -1,4 +1,4 @@
-   body {
+body {
   font-family: Arial, sans-serif;
   background: #f0f0f0;
   /* Centrage vertical + horizontal avec flex */
@@ -11,6 +11,7 @@
 
 .chat-container {
   background: white;
+  border: 2px solid #050505;
   width: 1200px;
   max-width: 90%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -66,14 +67,14 @@
 
 .chat-input {
   display: flex;
-  border-top: 1px solid #ccc;
+  border-top: 2px solid #0e0d0d;
   padding: 20px 35px;
 }
 
 .chat-input input {
   flex: 1;
   padding: 15px;
-  border: 1px solid #ccc;
+  border: 2px solid #050505;
   border-radius: 20px 0 0 20px;
   font-size: 1em;
   outline: none;
@@ -92,6 +93,20 @@
 
 .chat-input button:hover {
   background: #0d0d0e;
+}
+
+#section{
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 1.1em;
+  color: #666;
+  font-style: italic;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0px 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
 
 .spinner::after {
