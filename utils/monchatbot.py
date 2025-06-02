@@ -5,7 +5,9 @@ from utils.wikipedia_search import get_wikipedia_summary
 from utils.google_search import recherche_google
 from utils.neural_net import model
 from app.config import WIKI_TRIGGER, TAILLE_MAX
+from .neogpt import NeoGPT
 
+neo_gpt = NeoGPT(personality="assistant")
 corpus_embeddings = None
 
 def update_corpus_embeddings():
@@ -21,12 +23,10 @@ def ton_humain_reponse(texte: str) -> str:
     réactions = (
         ["😊", "👍", "Ça me fait plaisir de t'aider !", "Super question !", "Tu es brillant(e) !"],
         ["Hmm...", "Intéressant...", "Voyons voir...", "C'est une bonne question.", "Je réfléchis..."],
-        [
-            "Je ne suis pas une boule de cristal, mais là je crois que c'est ça ! 😂",
-            "Si j'avais un euro à chaque fois qu'on me pose cette question... 💸",
-            "Je suis un bot, mais je commence à comprendre les humains ! 🤖",
-            "Je suis pas parfait, mais j'essaie ! 😅"
-        ]
+        ["Je ne suis pas une boule de cristal, mais je crois que c'est ça ! 😂",
+         "Si j'avais un euro à chaque fois qu'on me pose cette question... 💸",
+         "Je suis un bot, mais je commence à comprendre les humains ! 🤖",
+         "Je suis pas parfait, mais j'essaie ! 😅"]
     )
     r = random.random()
     prefix = random.choice(
@@ -69,7 +69,6 @@ def obtenir_la_response(message: str) -> str:
     if (resp := detect_salutation(msg)):
         return resp
 
-    # Requête Wikipédia
     if msg.lower().startswith(WIKI_TRIGGER):
         query = msg[len(WIKI_TRIGGER):].strip()
         if not query:
@@ -104,13 +103,18 @@ def obtenir_la_response(message: str) -> str:
             except Exception as e:
                 return ton_humain_reponse(f"Erreur lors de la recherche dans la mémoire : {e}")
 
-    # Recherche Google si mémoire insuffisante
     try:
-        if (res := recherche_google(msg)):
-            ajouter_a_memoire(msg, res)
-            return ton_humain_reponse(f"Voici ce que j'ai trouvé via Google :\n{res}")
+        res = neo_gpt.chat(msg, max_length=100)
+        ajouter_a_memoire(msg, res)
+        return ton_humain_reponse(res)
     except Exception as e:
-        return ton_humain_reponse(f"Erreur lors de la recherche Google : {e}")
+        try:
+            if (res := recherche_google(msg)):
+                ajouter_a_memoire(msg, res)
+                return ton_humain_reponse(f"Voici ce que j'ai trouvé via Google :\n{res}")
+        except Exception as e2:
+            return ton_humain_reponse(f"Erreur lors de la recherche Google : {e2}")
+        return ton_humain_reponse(f"Erreur interne lors de la génération de réponse : {e}")
 
     ajouter_a_memoire(msg, "Je vais m'en souvenir pour la prochaine fois.")
     return ton_humain_reponse("Je ne connais pas encore la réponse, mais je l'apprendrai pour toi !")

@@ -1,29 +1,29 @@
 mon_projet/
 │
-├── app/                        # Application principale (logique métier & serveur)
-│   ├── __init__.py             # Rend le dossier importable en package Python
-│   ├── app.py                  # Point d'entrée Flask (ex : création et config de l'app)
-│   ├── config.py               # Configuration (variables d'env, clés API, constantes)
-│   ├── memory.py               # Gestion mémoire (cache, accès thread-safe)
-│   └── routes.py               # (Optionnel) séparation des routes Flask
-│
-├── utils/                      # Fonctions utilitaires & modules métier
+├── app/
 │   ├── __init__.py
-│   ├── google_search.py        # Requêtes Google Custom Search API
-│   ├── wikipedia_search.py     # Requêtes Wikipédia avec cache/mémoization
-│   ├── monchatbot.py           # Logique principale du chatbot (réponses, gestion mémoire)
-│   ├── neural_net.py           # Réseau de neurones, embeddings, entraînement
+│   ├── app.py
+│   ├── config.py
+│   ├── memory.py
+│   └── routes.py
 │
-├── data/                       # Données persistantes
-│   ├── memoire_du_chatbot.json # Base mémoire des questions/réponses
+├── utils/
+│   ├── __init__.py
+│   ├── google_search.py
+│   ├── wikipedia_search.py
+│   ├── monchatbot.py
+│   ├── neural_net.py
+│   ├── gpt_neo.py
+│   └── neogpt.py
 │
-├── templates/                 
-│   └── index.html              # Page d’accueil / interface chat
+├── data/
+│   └── memoire_du_chatbot.json
 │
-├── static/                     # Ressources statiques front-end
+├── templates/
+│   └── index.html
+│
+├── static/
 │   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── main.js
+│   └── js/
 │
-└── README.md                   # Documentation générale du projet
+└── README.md
