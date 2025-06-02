@@ -52,7 +52,7 @@ def detect_salutation(message: str) -> str | None:
             "Salut ! Ravi de te voir.", "Coucou ! Que puis-je faire pour toi ?"
         ],
 
-        ("comment vas-tu", "comment ça va", "ça va", "tu vas bien"): [
+        ("comment vas-tu", "comment ça va", "ça va", "tu vas bien, comment vas tu ?", "comment ça va ?"): [
             "Je vais très bien, merci ! Et toi ?",
             "Tout roule ici, prêt à t'aider !",
             "Super bien, merci de demander !"
