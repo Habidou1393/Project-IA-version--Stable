@@ -20,7 +20,7 @@ def recherche_google(query, timeout=5):
             "hl": "fr",             # Langue des résultats (français)
             "fields": "items/snippet"  # On demande seulement les extraits des résultats
         }
-
+    
         # Envoi de la requête GET à l'API Google Custom Search avec délai d'attente
         resp = requests.get(
             "https://www.googleapis.com/customsearch/v1",
