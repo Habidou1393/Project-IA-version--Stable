@@ -7,12 +7,6 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 GOOGLE_CX = os.getenv("GOOGLE_CX")
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
 
-# Nom du fichier JSON qui stockera la mémoire ou les données du chatbot
-
-DATA_FILE = "MémoireDuChatbot.json"
-
-TAILLE_MAX = 1000  # Taille maximale de la mémoire, nombre d'entrées à conserver
-
 # Mot-clé déclencheur pour lancer une recherche sur Wikipédia dans les requêtes utilisateur
 WIKI_TRIGGER = "recherche sur wikipedia"
 
