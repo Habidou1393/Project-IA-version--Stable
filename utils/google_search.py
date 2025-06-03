@@ -2,9 +2,9 @@ import logging
 from googlesearch import search
 from bs4 import BeautifulSoup
 import requests
-from typing import Optional
+from typing import Optional 
 
-from utils.Mistral_API import ask_mistral  # Résumeur IA
+from utils.Mistral_API import ask_mistral # Import de la fonction pour interroger l'API Mistral
 
 logger = logging.getLogger(__name__)
 
