@@ -2,6 +2,11 @@
 const chat = document.getElementById("chatMessages");
 const input = document.getElementById("userInput");
 const form = document.getElementById("chatForm");
+const darkModeToggle = document.getElementById("darkModeToggle"); // Bouton de thème
+
+darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark"); // Active ou désactive le mode sombre
+});
 
 let loadingMsg = null; // Variable pour stocker le message "en cours de chargement"
 
