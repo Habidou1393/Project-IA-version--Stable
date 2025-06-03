@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import requests
 from typing import Optional
 
+from utils.Mistral_API import ask_mistral  # Résumeur IA
+
 logger = logging.getLogger(__name__)
 
 def recherche_google(query: str, logger: Optional[logging.Logger] = None, num_results: int = 3) -> Optional[str]:
@@ -23,7 +25,6 @@ def recherche_google(query: str, logger: Optional[logging.Logger] = None, num_re
             logger.warning(f"Aucun résultat Google pour '{query}'")
             return None
 
-        # Parcourt les résultats et tente d’extraire un résumé HTML
         for url in urls:
             try:
                 response = requests.get(url, timeout=5)
@@ -31,12 +32,27 @@ def recherche_google(query: str, logger: Optional[logging.Logger] = None, num_re
 
                 soup = BeautifulSoup(response.text, "html.parser")
 
-                # On tente d’extraire le premier paragraphe significatif
-                p = soup.find("p")
-                if p and p.get_text(strip=True):
-                    texte = p.get_text(strip=True)
-                    logger.info(f"Résumé trouvé sur : {url}")
-                    return f"{texte}\n(Source : {url})"
+                # 🔍 Récupère plusieurs paragraphes utiles
+                paragraphes = soup.find_all("p")
+                contenu = " ".join(
+                    p.get_text(strip=True)
+                    for p in paragraphes[:4]
+                    if len(p.get_text(strip=True)) > 60
+                )
+
+                if contenu:
+                    titre = soup.title.string.strip() if soup.title and soup.title.string else url
+                    logger.info(f"Contenu trouvé sur : {url}")
+
+                    # 🧠 Prompt orienté "définir le mot"
+                    prompt = (
+                        f"Voici un extrait de texte qui parle du mot « {query} » :\n\n"
+                        f"{contenu}\n\n"
+                        f"Explique simplement ce que signifie le mot « {query} » en français, en 2 phrases maximum."
+                    )
+                    resume = ask_mistral(prompt)
+
+                    return f"{resume}<br><a href='{url}' target='_blank' rel='noopener noreferrer'>{titre}</a>"
 
             except Exception as e:
                 logger.warning(f"Erreur en lisant {url} : {e}")

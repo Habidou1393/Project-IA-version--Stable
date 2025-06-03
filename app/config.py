@@ -15,4 +15,5 @@ GOOGLE_TRIGGER = "recherche sur google"
 # Identifiant du moteur de recherche personnalisé Google (Custom Search Engine ID)
 GOOGLE_CX = "6098340421bc7410b"
 
-MISTRAL_API_KEY = "sk-live-MN7d3TwFQFGN4JQmQakW8qYCIq9UKOkX"  
+MISTRAL_API_KEY = "MN7d3TwFQFGN4JQmQakW8qYCIq9UKOkX"  
+
