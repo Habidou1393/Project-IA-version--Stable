@@ -10,6 +10,7 @@ mon_projet/
 │   ├── __init__.py
 │   ├── google_search.py
 │   ├── wikipedia_search.py
+│   ├── Mistral_API.py
 │   └── monchatbot.py
 │
 ├── templates/
