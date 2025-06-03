@@ -5,10 +5,12 @@ DATA_FILE = "MémoireDuChatbot.json"
 TAILLE_MAX = 100
 
 # Mot-clé déclencheur pour lancer une recherche sur Wikipédia dans les requêtes utilisateur
-WIKI_TRIGGER = "recherche sur wikipedia "
+WIKI_TRIGGER = "recherche sur wikipedia"
 
 # Clé API Google (à ne pas exposer publiquement pour des raisons de sécurité)
 GOOGLE_API_KEY = "AIzaSyCq-UUQBkDw1BpdEtlA0RHYtAZQ9mXq2O0"
 
 # Identifiant du moteur de recherche personnalisé Google (Custom Search Engine ID)
 GOOGLE_CX = "6098340421bc7410b"
+
+MISTRAL_API_KEY = "sk-live-MN7d3TwFQFGN4JQmQakW8qYCIq9UKOkX"  # Mets ça dans une variable d’environnement si possible

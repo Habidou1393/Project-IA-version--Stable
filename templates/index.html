@@ -7,20 +7,28 @@
         <link rel="stylesheet" href="/static/style.css" />
     </head>
     <body>
-        <button onclick="document.body.classList.toggle('dark')" style="position: fixed; top: 40px; right: 40px;"></button>
+        <!-- Bouton de thème -->
+        <button onclick="document.body.classList.toggle('dark')" style="position: fixed; top: 40px; right: 40px"></button>
         <button id="darkModeToggle">🌗</button>
+
+        <!-- Conteneur principal du chat -->
         <div class="chat-container">
             <div class="chat-header">Mon Chatbot</div>
+
+            <!-- Zone des messages -->
             <div class="chat-messages" id="chatMessages"></div>
+
+            <!-- Formulaire de saisie -->
             <form class="chat-input" id="chatForm">
                 <input type="text" id="userInput" placeholder="Écris un message..." autocomplete="off" required />
                 <button type="submit">Envoyer</button>
             </form>
         </div>
-        <section id="section">
-        <div id="section">
-            JACOBERGER Kentin &nbsp;&nbsp;|&nbsp;&nbsp; LADHARI Haytham
-        </div>
+
+        <!-- Pied de page -->
+        <footer id="footer">JACOBERGER Kentin &nbsp;&nbsp;|&nbsp;&nbsp; LADHARI Haytham</footer>
+
+        <!-- Script JS -->
         <script src="/static/main.js"></script>
     </body>
 </html>

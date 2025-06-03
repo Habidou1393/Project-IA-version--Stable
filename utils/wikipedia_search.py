@@ -18,23 +18,6 @@ def get_wikipedia_summary(
     return_disambiguation: bool = False,
     logger: Optional[logging.Logger] = None 
 ) -> Optional[Union[str, List[str]]]:
-    """
-    Recherche un résumé Wikipédia pour une requête donnée.
-
-    Args:
-        query (str): La requête à rechercher sur Wikipédia.
-        lang (str): Code langue Wikipédia (ex: 'fr' pour français).
-        sentences (int): Nombre maximum de phrases à retourner dans le résumé.
-        auto_suggest (bool): Active la correction automatique si la requête est mal orthographiée.
-        redirect (bool): Suivre automatiquement les redirections Wikipédia.
-        return_disambiguation (bool): Si True, en cas de page ambigüe, retourne la liste des options possibles.
-        logger (logging.Logger): Logger optionnel pour gérer les messages d'erreur ou warning.
-
-    Returns:
-        str, List[str] ou None: Résumé Wikipédia sous forme de texte,
-                               ou liste d'options en cas de désambiguïsation si demandé,
-                               ou None en cas d'erreur ou requête vide.
-    """
 
     # Utilise un logger passé en paramètre ou crée un logger par défaut
     if logger is None:
