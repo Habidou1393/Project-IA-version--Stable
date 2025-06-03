@@ -1,15 +1,15 @@
-import random
-import re
-from utils.wikipedia_search import get_wikipedia_summary
-from utils.google_search import recherche_google
-from utils.Calcul_Maths import resoudre_expression_math
-from app.config import WIKI_TRIGGER, GOOGLE_TRIGGER, MATH_TRIGGER
+import random  # Pour générer des réponses aléatoires (émoticônes ou phrases)
+import re  # Pour utiliser des expressions régulières dans la détection mathématique
+from utils.wikipedia_search import get_wikipedia_summary  # Fonction de résumé Wikipédia
+from utils.google_search import recherche_google  # Fonction de recherche Google
+from utils.Calcul_Maths import resoudre_expression_math  # Résolution d'expressions mathématiques
+from app.config import WIKI_TRIGGER, GOOGLE_TRIGGER, MATH_TRIGGER  # Mots-clés déclencheurs pour les types de requêtes
 
-
+# Génère une réponse humaine avec une touche aléatoire sympathique
 def ton_humain_reponse(texte: str, math_mode: bool = False) -> str:
     if math_mode:
-        return texte
-    réactions = [
+        return texte  # Ne pas ajouter de réaction dans le mode mathématique
+    réactions = [  # Liste d'expressions et émojis pour rendre la réponse plus humaine
         "😊", "👍", "Ça me fait plaisir de t'aider !", "Super question !",
         "Tu es brillant(e) !", "Hmm...", "Intéressant...", "Voyons voir...",
         "C'est une bonne question.", "Je réfléchis...", "Je ne suis pas une boule de cristal, mais je crois que c'est ça ! 😂",
@@ -17,11 +17,11 @@ def ton_humain_reponse(texte: str, math_mode: bool = False) -> str:
         "Je suis un bot, mais je commence à comprendre les humains ! 🤖",
         "Je suis pas parfait, mais j'essaie ! 😅"
     ]
-    return f"{random.choice(réactions)} {texte}"
+    return f"{random.choice(réactions)} {texte}"  # Retourne le texte avec une réaction aléatoire
 
-
+# Détecte si un message est une salutation ou autre interaction basique et retourne une réponse adaptée
 def detect_salutation(message: str) -> str | None:
-    msg = message.lower().strip()
+    msg = message.lower().strip()  # Mise en minuscule pour comparaison
     if any(m in msg for m in ("bonjour", "salut", "coucou", "hello", "hey")):
         return random.choice([
             "Bonjour ! Comment puis-je t'aider aujourd'hui ?",
@@ -70,11 +70,10 @@ def detect_salutation(message: str) -> str | None:
             "Je suis un chatbot conçu pour répondre à tes questions.",
             "Je suis là pour t'assister, que puis-je faire pour toi ?"
         ])
-    return None
+    return None  # Si aucun cas ne correspond, retourne None
 
-
+# Détecte si le message contient probablement des maths (formules, mots-clés, symboles)
 def est_message_mathematique(msg: str) -> bool:
-    """Détection simple d’une expression mathématique."""
     msg = msg.lower()
     mots_cles = [
         "int(", "∫", "dérive", "dérivée", "intégrale", "primitive", "lim", "limite",
@@ -87,17 +86,17 @@ def est_message_mathematique(msg: str) -> bool:
         return True
     return False
 
-
+# Fonction principale qui traite un message utilisateur et renvoie une réponse
 def obtenir_la_response(message: str) -> str:
-    from app.memory import memoire_cache, lock
+    from app.memory import memoire_cache, lock  # Import de la mémoire (cache)
     msg = message.strip()
     if not msg:
         return "Je n'ai pas bien saisi ta question, pourrais-tu reformuler s'il te plaît ?"
 
     if (resp := detect_salutation(msg)):
-        return resp
+        return resp  # Retourne une réponse préprogrammée si salutation
 
-    # 📚 Bloc Wikipédia
+    # 📚 Si la requête commence par le mot-clé pour Wikipedia
     if msg.lower().startswith(WIKI_TRIGGER):
         query = msg[len(WIKI_TRIGGER):].strip()
         if not query:
@@ -109,7 +108,7 @@ def obtenir_la_response(message: str) -> str:
         except Exception as e:
             return ton_humain_reponse(f"Erreur lors de la recherche Wikipédia : {e}")
 
-    # 🌐 Bloc Google
+    # 🌐 Si la requête commence par le mot-clé pour Google
     if msg.lower().startswith(GOOGLE_TRIGGER):
         query = msg[len(GOOGLE_TRIGGER):].strip()
         if not query:
@@ -121,7 +120,7 @@ def obtenir_la_response(message: str) -> str:
         except Exception as e:
             return ton_humain_reponse(f"Erreur lors de la recherche Google : {e}")
 
-    # ➕ Bloc Maths avec mot-clé explicite
+    # ➕ Si la requête commence par le mot-clé pour les maths
     if msg.lower().startswith(MATH_TRIGGER):
         expression = msg[len(MATH_TRIGGER):].strip()
         if not expression:
@@ -132,7 +131,7 @@ def obtenir_la_response(message: str) -> str:
         except Exception as e:
             return ton_humain_reponse(f"Erreur lors du calcul mathématique : {e}")
 
-    # 🔍 Détection automatique de message mathématique
+    # 🔍 Si on détecte automatiquement une expression mathématique
     if est_message_mathematique(msg):
         try:
             solution = resoudre_expression_math(msg)
@@ -140,5 +139,5 @@ def obtenir_la_response(message: str) -> str:
         except Exception as e:
             return ton_humain_reponse(f"Erreur lors du calcul mathématique : {e}")
 
-    # Fallback
+    # Cas par défaut : réponse de repli
     return ton_humain_reponse("Je ne connais pas encore la réponse, mais je vais l'apprendre !")
