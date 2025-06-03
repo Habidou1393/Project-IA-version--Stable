@@ -46,14 +46,6 @@ async function envoyerMessage() {
         const data = await response.json();
         loadingMsg.innerHTML = `<strong>Chatbot :</strong> ${data.response}`;
 
-        // Lecture vocale (décommenter si souhaitée)
-        /*
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(data.response);
-            utterance.lang = 'fr-FR';
-            speechSynthesis.speak(utterance);
-        }
-        */
 
     } catch (err) {
         console.error("Erreur lors de l’envoi :", err);
