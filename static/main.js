@@ -46,6 +46,13 @@ async function envoyerMessage() {
         const data = await response.json();
         loadingMsg.innerHTML = `<strong>Chatbot :</strong> ${data.response}`;
 
+        // ✅ Détection de contenu LaTeX
+        if (data.response.includes("\\(") || data.response.includes("$$")) {
+            loadingMsg.classList.add("math"); // ajoute style spécifique
+        }
+
+        // ✅ Active le rendu MathJax
+        if (window.MathJax) MathJax.typeset();
 
     } catch (err) {
         console.error("Erreur lors de l’envoi :", err);

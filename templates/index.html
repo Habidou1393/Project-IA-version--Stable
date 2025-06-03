@@ -5,7 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Chatbot</title>
         <link rel="stylesheet" href="/static/style.css" />
+
+        <!-- ✅ Intégration MathJax -->
+        <script>
+            window.MathJax = {
+                tex: {
+                    inlineMath: [
+                        ["$", "$"],
+                        ["\\(", "\\)"],
+                    ],
+                },
+                svg: { fontCache: "global" },
+            };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     </head>
+
     <body>
         <!-- Bouton de thème -->
         <button onclick="document.body.classList.toggle('dark')" style="position: fixed; top: 40px; right: 40px"></button>

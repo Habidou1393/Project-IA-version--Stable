@@ -261,6 +261,8 @@ body.dark .message.bot {
     right: 10px;
   }
 
+}
+
   /* Lien dans les messages du chatbot */
 .message.bot a {
   color: #1a73e8;           /* bleu Google */
@@ -274,4 +276,10 @@ body.dark .message.bot {
   text-decoration: none;
 }
 
+.message.math {
+    background-color: #f0fff4;
+    border-left: 4px solid #38a169;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Cambria Math", serif;
 }
