@@ -131,13 +131,5 @@ def obtenir_la_response(message: str) -> str:
         except Exception as e:
             return chatbot_reponse(f"Erreur lors du calcul mathématique : {e}")
 
-    # 🔍 Si on détecte automatiquement une expression mathématique
-    if Le_message_mathematique(msg):
-        try:
-            solution = resoudre_maths(msg)
-            return chatbot_reponse(solution, math_mode=True)
-        except Exception as e:
-            return chatbot_reponse(f"Erreur lors du calcul mathématique : {e}")
-
     # Cas par défaut : réponse de repli
     return chatbot_reponse("Je ne connais pas encore la réponse, mais je vais l'apprendre !")
