@@ -25,7 +25,7 @@ def detect_salutation(message: str) -> str | None:
             "Coucou ! Que puis-je faire pour toi ?"
         ])
     
-    if any(m in msg for m in ("ça va", "comment ça va", "comment vas-tu", "ça roule")):
+    if any(m in msg for m in ("ça va", "comment ça va", "comment vas-tu", "ça roule, cv ?")):
         return random.choice([
             "Ça va bien, merci ! Et toi ?",
             "Je vais bien, merci ! Et toi, comment ça se passe ?",
