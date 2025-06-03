@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)  # Crée un logger pour le module courant (
 set_lang("fr")
 
 @lru_cache(maxsize=128)  # Décorateur qui active le cache pour cette fonction (évite les appels redondants avec les mêmes paramètres)
-def get_wikipedia_summary(
+def recherche_wikipedia(
     query: str,  # La requête à rechercher sur Wikipédia (obligatoire)
     lang: str = "fr",  # Langue de la recherche (par défaut français)
     sentences: int = 2,  # Nombre de phrases à extraire dans le résumé (par défaut 2)

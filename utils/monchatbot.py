@@ -1,6 +1,6 @@
 import random  # Pour générer des réponses aléatoires (émoticônes ou phrases)
 import re  # Pour utiliser des expressions régulières dans la détection mathématique
-from utils.wikipedia_search import get_wikipedia_summary  # Fonction de résumé Wikipédia
+from utils.wikipedia_search import recherche_wikipedia  # Fonction de résumé Wikipédia
 from utils.google_search import recherche_google  # Fonction de recherche Google
 from utils.Calcul_Maths import resoudre_maths  # Résolution d'expressions mathématiques
 from app.config import WIKI_TRIGGER, GOOGLE_TRIGGER, MATH_TRIGGER  # Mots-clés déclencheurs pour les types de requêtes
@@ -102,7 +102,7 @@ def obtenir_la_response(message: str) -> str:
         if not query:
             return "Tu dois me dire ce que tu veux que je cherche sur Wikipédia."
         try:
-            if (res := get_wikipedia_summary(query)):
+            if (res := recherche_wikipedia(query)):
                 return chatbot_reponse(f"Voici ce que j'ai trouvé sur Wikipédia :\n{res}")
             return chatbot_reponse("Désolé, rien trouvé de pertinent sur Wikipédia.")
         except Exception as e:
