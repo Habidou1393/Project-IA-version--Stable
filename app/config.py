@@ -13,4 +13,4 @@ GOOGLE_API_KEY = "AIzaSyCq-UUQBkDw1BpdEtlA0RHYtAZQ9mXq2O0"
 # Identifiant du moteur de recherche personnalisé Google (Custom Search Engine ID)
 GOOGLE_CX = "6098340421bc7410b"
 
-MISTRAL_API_KEY = "sk-live-MN7d3TwFQFGN4JQmQakW8qYCIq9UKOkX"  # Mets ça dans une variable d’environnement si possible
+MISTRAL_API_KEY = "sk-live-MN7d3TwFQFGN4JQmQakW8qYCIq9UKOkX"  

@@ -1,11 +1,6 @@
 import random
-from sentence_transformers import util
-
 from utils.wikipedia_search import get_wikipedia_summary
-from utils.google_search import recherche_google
 from app.config import WIKI_TRIGGER, TAILLE_MAX
-
-
 
 def ton_humain_reponse(texte: str) -> str:
     réactions = [
@@ -21,17 +16,57 @@ def ton_humain_reponse(texte: str) -> str:
 def detect_salutation(message: str) -> str | None:
     msg = message.lower().strip()
     # (mêmes blocs if qu'avant, inchangés)
+
     if any(m in msg for m in ("bonjour", "salut", "coucou", "hello", "hey")):
         return random.choice([
             "Bonjour ! Comment puis-je t'aider aujourd'hui ?",
             "Salut ! Ravi de te voir.",
             "Coucou ! Que puis-je faire pour toi ?"
         ])
+    
+    if any(m in msg for m in ("au revoir", "bye", "à bientôt", "adieu")):
+        return random.choice([
+            "Au revoir ! À la prochaine !",
+            "Bye ! Prends soin de toi.",
+            "À bientôt ! N'hésite pas à revenir."
+        ])
+    
+    if any(m in msg for m in ("merci", "merci beaucoup", "merci bien")):
+        return random.choice([
+            "Avec plaisir ! Si tu as d'autres questions, n'hésite pas.",
+            "De rien ! Je suis là pour ça.",
+            "Pas de souci, c'est toujours un plaisir de t'aider !"
+        ])
+    
+    if any(m in msg for m in ("oui", "ouais", "d'accord", "ok")):
+        return random.choice([
+            "Super ! Je suis content que ça te convienne.",
+            "D'accord, parfait !",
+            "Ok, on continue alors !"
+        ])
+    
+    if any(m in msg for m in ("non", "pas d'accord", "je ne pense pas")):
+        return random.choice([
+            "D'accord, je comprends. Si tu veux en discuter, je suis là.",
+            "Pas de souci, chacun a son avis !",
+            "Ok, pas de problème. Dis-moi si tu changes d'avis."
+        ])
+    if any(m in msg for m in ("peux-tu", "pourrais-tu", "est-ce que tu peux")):
+        return random.choice([
+            "Bien sûr, je suis là pour ça ! Que veux-tu que je fasse ?",
+            "Oui, dis-moi ce que tu aimerais que je fasse.",
+            "Je peux certainement t'aider avec ça. Que souhaites-tu ?"
+        ])
+    if any(m in msg for m in ("qui es-tu", "qui est tu", "qui es tu")):
+        return random.choice([
+            "Je suis ton assistant virtuel, prêt à t'aider !",
+            "Je suis un chatbot conçu pour répondre à tes questions."
+            "Je suis là pour t'assister, que puis-je faire pour toi ?"
+        ])
     # … (les autres réponses préprogrammées ici identiques à ta version)
     return None
 
 def obtenir_la_response(message: str) -> str:
-    from app.memory import memoire_cache, lock
     msg = message.strip()
     if not msg:
         return "Je n'ai pas bien saisi ta question, pourrais-tu reformuler s'il te plaît ?"
