@@ -1,7 +1,7 @@
 import requests  # Pour effectuer des requêtes HTTP
 from app.config import MISTRAL_API_KEY  # Importe la clé API depuis la configuration du projet
 
-def ask_mistral(prompt, model="mistral-small"):
+def Mistral(prompt, model="mistral-small"):
     # Fonction qui envoie un prompt à l’API Mistral et retourne la réponse du modèle
 
     if not MISTRAL_API_KEY:

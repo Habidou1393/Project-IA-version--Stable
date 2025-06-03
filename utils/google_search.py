@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup  # Pour analyser et extraire du texte HTML
 import requests  # Pour faire des requêtes HTTP
 from typing import Optional  # Pour indiquer qu'un argument peut être de type ou None
 
-from utils.Mistral_API import ask_mistral  # Importe la fonction pour interroger l'API Mistral
+from utils.Mistral_API import Mistral  # Importe la fonction pour interroger l'API Mistral
 
 logger = logging.getLogger(__name__)  # Initialise un logger spécifique au module courant
 
@@ -52,7 +52,7 @@ def recherche_google(query: str, logger: Optional[logging.Logger] = None, num_re
                         f"{contenu}\n\n"
                         f"Explique simplement ce que signifie le mot « {query} » en français, en 2 phrases maximum."
                     )
-                    resume = ask_mistral(prompt)  # Envoie le prompt à Mistral et récupère la réponse
+                    resume = Mistral(prompt)  # Envoie le prompt à Mistral et récupère la réponse
 
                     # Retourne le résumé avec un lien cliquable vers la source
                     return f"{resume}<br><a href='{url}' target='_blank' rel='noopener noreferrer'>{titre}</a>"

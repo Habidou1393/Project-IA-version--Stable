@@ -2,11 +2,11 @@ import random  # Pour générer des réponses aléatoires (émoticônes ou phras
 import re  # Pour utiliser des expressions régulières dans la détection mathématique
 from utils.wikipedia_search import get_wikipedia_summary  # Fonction de résumé Wikipédia
 from utils.google_search import recherche_google  # Fonction de recherche Google
-from utils.Calcul_Maths import resoudre_expression_math  # Résolution d'expressions mathématiques
+from utils.Calcul_Maths import resoudre_maths  # Résolution d'expressions mathématiques
 from app.config import WIKI_TRIGGER, GOOGLE_TRIGGER, MATH_TRIGGER  # Mots-clés déclencheurs pour les types de requêtes
 
 # Génère une réponse humaine avec une touche aléatoire sympathique
-def ton_humain_reponse(texte: str, math_mode: bool = False) -> str:
+def chatbot_reponse(texte: str, math_mode: bool = False) -> str:
     if math_mode:
         return texte  # Ne pas ajouter de réaction dans le mode mathématique
     réactions = [  # Liste d'expressions et émojis pour rendre la réponse plus humaine
@@ -20,7 +20,7 @@ def ton_humain_reponse(texte: str, math_mode: bool = False) -> str:
     return f"{random.choice(réactions)} {texte}"  # Retourne le texte avec une réaction aléatoire
 
 # Détecte si un message est une salutation ou autre interaction basique et retourne une réponse adaptée
-def detect_salutation(message: str) -> str | None:
+def detection_salutation(message: str) -> str | None:
     msg = message.lower().strip()  # Mise en minuscule pour comparaison
     if any(m in msg for m in ("bonjour", "salut", "coucou", "hello", "hey")):
         return random.choice([
@@ -73,7 +73,7 @@ def detect_salutation(message: str) -> str | None:
     return None  # Si aucun cas ne correspond, retourne None
 
 # Détecte si le message contient probablement des maths (formules, mots-clés, symboles)
-def est_message_mathematique(msg: str) -> bool:
+def Le_message_mathematique(msg: str) -> bool:
     msg = msg.lower()
     mots_cles = [
         "int(", "∫", "dérive", "dérivée", "intégrale", "primitive", "lim", "limite",
@@ -93,7 +93,7 @@ def obtenir_la_response(message: str) -> str:
     if not msg:
         return "Je n'ai pas bien saisi ta question, pourrais-tu reformuler s'il te plaît ?"
 
-    if (resp := detect_salutation(msg)):
+    if (resp := detection_salutation(msg)):
         return resp  # Retourne une réponse préprogrammée si salutation
 
     # 📚 Si la requête commence par le mot-clé pour Wikipedia
@@ -103,10 +103,10 @@ def obtenir_la_response(message: str) -> str:
             return "Tu dois me dire ce que tu veux que je cherche sur Wikipédia."
         try:
             if (res := get_wikipedia_summary(query)):
-                return ton_humain_reponse(f"Voici ce que j'ai trouvé sur Wikipédia :\n{res}")
-            return ton_humain_reponse("Désolé, rien trouvé de pertinent sur Wikipédia.")
+                return chatbot_reponse(f"Voici ce que j'ai trouvé sur Wikipédia :\n{res}")
+            return chatbot_reponse("Désolé, rien trouvé de pertinent sur Wikipédia.")
         except Exception as e:
-            return ton_humain_reponse(f"Erreur lors de la recherche Wikipédia : {e}")
+            return chatbot_reponse(f"Erreur lors de la recherche Wikipédia : {e}")
 
     # 🌐 Si la requête commence par le mot-clé pour Google
     if msg.lower().startswith(GOOGLE_TRIGGER):
@@ -115,29 +115,29 @@ def obtenir_la_response(message: str) -> str:
             return "Tu dois me dire ce que tu veux que je cherche sur Google."
         try:
             if (res := recherche_google(query)):
-                return ton_humain_reponse(f"Voici ce que j'ai trouvé via Google :\n{res}")
-            return ton_humain_reponse("Désolé, rien trouvé de pertinent via Google.")
+                return chatbot_reponse(f"Voici ce que j'ai trouvé via Google :\n{res}")
+            return chatbot_reponse("Désolé, rien trouvé de pertinent via Google.")
         except Exception as e:
-            return ton_humain_reponse(f"Erreur lors de la recherche Google : {e}")
+            return chatbot_reponse(f"Erreur lors de la recherche Google : {e}")
 
     # ➕ Si la requête commence par le mot-clé pour les maths
     if msg.lower().startswith(MATH_TRIGGER):
         expression = msg[len(MATH_TRIGGER):].strip()
         if not expression:
-            return ton_humain_reponse("Tu dois m’écrire une expression ou un problème mathématique à résoudre.")
+            return chatbot_reponse("Tu dois m’écrire une expression ou un problème mathématique à résoudre.")
         try:
-            solution = resoudre_expression_math(expression)
-            return ton_humain_reponse(solution, math_mode=True)
+            solution = resoudre_maths(expression)
+            return chatbot_reponse(solution, math_mode=True)
         except Exception as e:
-            return ton_humain_reponse(f"Erreur lors du calcul mathématique : {e}")
+            return chatbot_reponse(f"Erreur lors du calcul mathématique : {e}")
 
     # 🔍 Si on détecte automatiquement une expression mathématique
-    if est_message_mathematique(msg):
+    if Le_message_mathematique(msg):
         try:
-            solution = resoudre_expression_math(msg)
-            return ton_humain_reponse(solution, math_mode=True)
+            solution = resoudre_maths(msg)
+            return chatbot_reponse(solution, math_mode=True)
         except Exception as e:
-            return ton_humain_reponse(f"Erreur lors du calcul mathématique : {e}")
+            return chatbot_reponse(f"Erreur lors du calcul mathématique : {e}")
 
     # Cas par défaut : réponse de repli
-    return ton_humain_reponse("Je ne connais pas encore la réponse, mais je vais l'apprendre !")
+    return chatbot_reponse("Je ne connais pas encore la réponse, mais je vais l'apprendre !")

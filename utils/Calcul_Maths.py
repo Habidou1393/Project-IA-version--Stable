@@ -1,6 +1,6 @@
-from utils.Mistral_API import ask_mistral  # Importe la fonction pour interagir avec l'API Mistral
+from utils.Mistral_API import Mistral  # Importe la fonction pour interagir avec l'API Mistral
                                             
-def resoudre_expression_math(expression: str) -> str:
+def resoudre_maths(expression: str) -> str:
     # Fonction qui traite une expression mathématique (avec ou sans explication),
     # et retourne la réponse générée par l'API Mistral.
 
@@ -25,4 +25,4 @@ def resoudre_expression_math(expression: str) -> str:
             f"En français : calcule cette expression mathématique et donne uniquement le résultat final, sans explication :\n{expression}"
         )
 
-    return ask_mistral(prompt)  # Envoie le prompt à l'API Mistral et retourne la réponse
+    return Mistral(prompt)  # Envoie le prompt à l'API Mistral et retourne la réponse
