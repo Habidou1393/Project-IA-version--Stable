@@ -13,9 +13,9 @@ def recherche_wikipedia(
     query: str,  # La requête à rechercher sur Wikipédia (obligatoire)
     lang: str = "fr",  # Langue de la recherche (par défaut français)
     sentences: int = 2,  # Nombre de phrases à extraire dans le résumé (par défaut 2)
-    auto_suggest: bool = True,  # Permet à Wikipédia de corriger automatiquement les fautes ou approximations
+    auto_suggest: bool = False,  # Permet à Wikipédia de corriger automatiquement les fautes ou approximations
     redirect: bool = True,  # Suivre automatiquement les redirections de pages
-    return_disambiguation: bool = False,  # Si la requête est ambiguë, retourne la liste des options au lieu de None
+    return_disambiguation: bool = True,  # Si la requête est ambiguë, retourne la liste des options au lieu de None
     logger: Optional[logging.Logger] = None  # Logger optionnel pour personnaliser la journalisation
 ) -> Optional[Union[str, List[str]]]:  # La fonction retourne soit un résumé (str), soit une liste (désambiguïsation), soit None
 
@@ -34,7 +34,8 @@ def recherche_wikipedia(
         set_lang(lang)
 
         # Récupère un résumé selon la requête et paramètres
-        texte = summary(query, sentences=sentences, auto_suggest=auto_suggest, redirect=redirect)
+        #texte = summary(query, sentences=sentences, auto_suggest=auto_suggest, redirect=redirect)
+        texte = summary(query, sentences=sentences, auto_suggest=True, redirect=redirect)
 
         # Si résumé non vide, on retourne le texte nettoyé
         if texte:

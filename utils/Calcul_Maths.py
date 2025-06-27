@@ -24,5 +24,5 @@ def resoudre_maths(expression: str) -> str:
         prompt = (
             f"En français : calcule cette expression mathématique et donne uniquement le résultat final, sans explication :\n{expression}"
         )
-
+    
     return Mistral(prompt)  # Envoie le prompt à l'API Mistral et retourne la réponse

@@ -283,3 +283,17 @@ body.dark .message.bot {
     border-radius: 5px;
     font-family: "Cambria Math", serif;
 }
+
+* {
+  transition: background 0.5s ease, color 0.5s ease; /* transition des message envoyer */
+}
+
+.message:hover {
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  transform: scale(1.01);                 /* Effet de survol sur les bulles de message */
+  transition: 0.2s ease;
+}
+
+button {
+  transition: all 0.2s ease-in-out; /* transition des boutons */
+}

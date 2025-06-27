@@ -6,7 +6,7 @@ def Mistral(prompt, model="mistral-small"):
 
     if not MISTRAL_API_KEY:
         # Vérifie que la clé API est définie
-        return "Clé API Mistral manquante. Vérifie ton fichier config.py ou .env."
+        return "Clé API Mistral manquante. Vérifie ton fichier config.py"
 
     url = "https://api.mistral.ai/v1/chat/completions"  # URL de l'API Mistral pour générer une réponse
 

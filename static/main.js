@@ -21,7 +21,7 @@ function ajouterMessage(nom, texte, classe) {
 }
 
 // Fonction pour créer un indicateur de chargement ("Chatbot est en train d’écrire...")
-function afficherChargement() {
+function creerSpinner() {
     const span = document.createElement("span"); // Crée un élément <span>
     span.className = "spinner"; // Lui attribue la classe CSS "spinner"
     span.innerText = "est en train d’écrire..."; // Définit le texte affiché pendant le chargement
@@ -38,7 +38,7 @@ async function envoyerMessage() {
     input.disabled = true; // Désactive temporairement la saisie pendant la requête
 
     loadingMsg = ajouterMessage("Chatbot :", "", "bot"); // Crée un message vide pour la réponse du bot
-    loadingMsg.appendChild(afficherChargement()); // Ajoute un indicateur de chargement
+    loadingMsg.appendChild(creerSpinner()); // Ajoute un indicateur de chargement
 
     try {
         // Envoie la requête POST au backend Flask
