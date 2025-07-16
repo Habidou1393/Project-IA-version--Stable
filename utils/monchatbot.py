@@ -110,6 +110,37 @@ def contient_contenu_inapproprié(msg: str) -> bool:
     msg = msg.lower()
     return any(mot in msg for mot in blacklist)
 
+# def classement_IA(message :str) -> bool | None:
+#     messsage = message.lower().strip()
+#     if texte_similaire(messsage, ["Quelle est la meilleur IA","Quelle est la meilleur IA sur 20 IA"]):
+#         tableau = (
+#             """
+# | IA                   | Description                                                                                                                    | Capacités de Codage | Capacités de Communication |
+# | -------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------- | -------------------------- |
+# | GitHub Copilot       | Idéal pour les développeurs utilisant GitHub, aide à accélérer les cycles de développement et à améliorer la qualité du code.  | Excellente          | Bonne                      |
+# | Mistral AI           | Startup française offrant des modèles d'IA open-source performants, avec une approche transparente et communautaire.           | Bonne               | Bonne                      |
+# | Continue.dev         | Outil léger et rapide pour les développeurs, utilisé pour les revues de code et les projets open source.                       | Excellente          | Bonne                      |
+# | ChatGPT              | Chatbot IA grand public capable de générer et d'analyser du code, utilisé pour la collaboration en équipe et la communication. | Bonne               | Excellente                 |
+# | Gemini               | Chatbot IA grand public avec des fonctionnalités innovantes, utilisé pour la collaboration en équipe et la communication.      | Bonne               | Excellente                 |
+# | Claude               | Développé par Anthropic, un chatbot axé sur la sécurité et la collaboration.                                                   | Moyenne             | Excellente                 |
+# | Rytr                 | Plateforme de rédaction IA qui aide à créer du contenu rapidement dans plusieurs langues.                                      | Faible              | Excellente                 |
+# | Writesonic           | Outil d'écriture IA pour générer des articles, des publicités et plus encore.                                                  | Faible              | Excellente                 |
+# | DeepCode             | Utilise l'IA pour analyser le code et suggérer des améliorations.                                                              | Excellente          | Faible                     |
+# | Tabnine              | Assistant de codage basé sur l'IA qui suggère des complétions de code.                                                         | Excellente          | Faible                     |
+# | Snyk                 | Plateforme de sécurité des développeurs qui utilise l'IA pour détecter les vulnérabilités.                                     | Bonne               | Moyenne                    |
+# | Replit Ghostwriter   | Outil intégré dans Replit pour aider les développeurs à écrire du code.                                                        | Excellente          | Bonne                      |
+# | Amazon CodeWhisperer | Outil de suggestion de code basé sur l'IA par Amazon.                                                                          | Excellente          | Faible                     |
+# | Codeium              | Plateforme d'assistance au codage utilisant l'IA pour les développeurs.                                                        | Excellente          | Faible                     |
+# | Otter.ai             | Service de transcription utilisant l'IA pour convertir la parole en texte.                                                     | Faible              | Excellente                 |
+# | Grammarly            | Assistant d'écriture utilisant l'IA pour améliorer la grammaire et le style.                                                   | Faible              | Excellente                 |
+# | Synthesia            | Plateforme de création vidéo utilisant des avatars IA.                                                                         | Faible              | Excellente                 |
+# | DALL-E               | Modèle d'OpenAI pour générer des images à partir de descriptions textuelles.                                                   | Faible              | Bonne                      |
+# | MidJourney           | Outil de génération d'images à partir de descriptions textuelles.                                                              | Faible              | Bonne                      |
+# | Hugging Face         | Plateforme offrant divers modèles d'IA pour le traitement du langage naturel et plus encore.                                   | Bonne               | Excellente                 |
+# """
+#         )
+#         return tableau
+
 
 # ✅ Fonction principale
 def obtenir_la_response(message: str) -> str:
@@ -122,6 +153,11 @@ def obtenir_la_response(message: str) -> str:
 
     if (resp := detection_salutation(msg)):
         return resp
+
+    reponse_polie, question = extraire_politesse_et_question(msg)
+
+    # if (tableau := classement_IA(msg)):
+    #     return tableau
 
     reponse_polie, question = extraire_politesse_et_question(msg)
 
@@ -192,3 +228,4 @@ def obtenir_la_response(message: str) -> str:
         "Pas certain de la réponse 😕 Tu veux que j’explore un peu plus ?"
     ]
     return chatbot_reponse(random.choice(suggestions))
+

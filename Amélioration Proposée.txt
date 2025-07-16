@@ -1,0 +1,17 @@
+Amélioration Proposée pour que l'IA sois plus spécialisé ou juste meilleures :
+
+1 - Faire en sorte qu'il ait une recherche par défaut comme rechercher directement sur google.
+
+2 - Crée peut-être une base de données pour que notre "IA" récupère les données en .JSON, pour qu'il puisse ensuite répondre à l'utilisateur au lieu de chercher sur internet pour que notre "IA" sois spécialisé sur un "Truc".
+
+3 - L'héberger dans un serveur (Chez Sofia Europa, chez nous, ou bien dans un cloud directement).
+
+4 - Améliorer les "Cas particulier" par exemple ci l'utilisateur fait des erreures d'orthographe (comme moi) l'IA réussi quand même à répondre.
+
+5 - Réussir à parler plusieurs langues (Anglais, Arabe, Français, voir toute les langues).
+
+6 - Améliorer le coté utilisateur 
+
+7 - Trouvé un nom de projet
+
+8 - 
