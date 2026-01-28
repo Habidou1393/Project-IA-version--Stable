@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify, render_template
 # Définir le dossier racine
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-# 🛠️ S'assurer que le chemin est dans sys.path
+# S'assurer que le chemin est dans sys.path
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
